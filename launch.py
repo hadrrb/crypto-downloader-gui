@@ -24,5 +24,3 @@ else:
 root = tk.Tk()
 app= Application(directory, master=root)
 app.mainloop()
-#print(directory)
-#print(subprocess.check_output(['dotnet', directory + 'CryptoDownloaderConsole.dll','--help']))
