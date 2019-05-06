@@ -51,9 +51,15 @@ class Application(tk.Frame):
 	def getins(self):
 		subprocess.run(['dotnet', self.directory + 'CryptoDownloaderConsole.dll','get', '--instruments='+ self.cb_value.get(), '--batch='+self.batch.get(), "--directory=./"])
 		if platform.system() == "Windows":
-			messagebox.showinfo("Done", "Data saved to " + os.getcwd() +  "\\" + self.batch.get() + "\\" + self.cb_value.get() + ".csv")
+			finalpath = os.getcwd() +  "\\" + self.batch.get() + "\\" + self.cb_value.get() + ".csv"
+			messagebox.showinfo("Done", "Data saved to " + finalpath)
+			subprocess.run(['notepad', finalpath])
+		elif platform.system() == 'Linux':
+			finalpath = os.getcwd() + "/" + self.batch.get() + "/" + self.cb_value.get() + ".csv"
+			messagebox.showinfo("Done", "Data saved to " + finalpath)
+			subprocess.run(['nano', finalpath])
 		else:
-			messagebox.showinfo("Done", "Data saved to " + os.getcwd() + "/" + self.batch.get() + "/" + self.cb_value.get() + ".csv")
+			messagebox.showinfo("Error!", "Unsupported platform!")
 		
 		
 		
